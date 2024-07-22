@@ -1,0 +1,445 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+
+/* --------------Dashboard---------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    /* width: 80%; */
+    gap: 16px;
+    margin: 0 auto;
+    position: relative;
+    background-image: linear-gradient(to right, #fef9d7 0%, #f3e693 100%);
+    min-height: 100vh;
+}
+
+.section-a {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    width: 20%;
+    background: linear-gradient(130deg, rgb(74 113 229 / 54%), rgb(41 178 249 / 80%));
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.section-b {
+    background: linear-gradient(100deg, rgb(197 210 68 / 40%), rgb(236 255 157 / 78%));
+    border-radius: 4px;
+    margin: 10px 10px 10px 22%;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 12px;
+    gap: 16px;
+}
+
+.tab {
+    font-size: 32px;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background:linear-gradient(130deg, rgb(218 69 14 / 76%), rgb(255 110 3 / 66%));
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 500;
+    font-family: cursive;
+}
+
+.section-b {
+    flex-grow: 1;
+    padding: 10px;
+    overflow: auto;
+}
+
+.data-section {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-top: 24px; */
+}
+
+.data-item {
+    font-weight: bold;
+    padding: 76px 112px;
+    border-radius: 24px;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+}
+
+#temperature-item {
+    background: linear-gradient(180deg, #e75f6f 0%, #ed4e5e 100%);
+}
+
+#humidity-item {
+    background: linear-gradient(180deg, #3adce5 0%, #31d4dd 100%);
+}
+
+#light-item {
+    background: linear-gradient(rgb(236, 192, 121) -146.42%,
+            rgb(244, 183, 78) -46.42%);
+}
+
+.control-section {
+    display: flex;
+    align-items: start;
+    margin-top: 82px;
+}
+
+.chart-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+}
+
+/* đèn và quạt */
+.light-control-and-fan-control {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    /* gap: 100px; */
+}
+
+.light-control,
+.light-control1,
+.fan-control {
+    flex: 1;
+    display: flex;
+    margin-top: 36px;
+    flex-direction: row;
+    align-items: end;
+    gap: 32px;
+}
+
+.light-control,
+.light-control1 {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.fan-control {
+    background: rgb(209 203 3 / 79%);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.action-and-status {
+    width: 89%;
+    background: #4e76f9;
+}
+
+.action-and-status table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #000000;
+}
+
+/* Tùy chỉnh các ô (cell) trong bảng */
+.action-and-status td {
+    /* border: 3px solid #ccc; */
+    padding: 8px;
+    color: rgb(0, 0, 0);
+    /* font-family: cursive; */
+    /* font-weight: bold; */
+    border: 3px solid #000000;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+/* Tùy chỉnh các thẻ <span> bên trong các ô */
+.action-and-status span {
+    /* font-weight: bold; */
+    color: rgb(0, 0, 0);
+    font-family: cursive;
+}
+
+/* Nền cho light-control và light-control1 */
+.light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -80px 28px;
+    gap: 100px;
+    background:rgb(255 109 109 / 79%);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#light-button,
+#light-button1,
+#fan-button {
+    margin: auto;
+    padding: 10px 24px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Georgia";
+}
+
+#light-button.on,
+#light-button1.on,
+#fan-button.on {
+    background-color: #ff5733;
+    padding: 10px 19.7px;
+}
+
+#fan-icon.off {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+}
+
+/* -------------Profile--------------- */
+
+.profile-card {
+    height: 600px;
+    background-color: #2ecc71;
+    width: 700px;
+    margin-left: 200px
+}
+
+.profile-header {
+    color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profile-header h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.profile-body {
+    padding: 48px;
+}
+
+
+.profile-body p {
+    margin: 20px 60px;
+    font-size: 24px;
+    font-family: cursive;
+    font-weight: 600;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.social-icons img {
+    width: 32px;
+    height: 32px;
+    margin: 0 8px;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+@import url('https://fonts.googleapis.com/css?family=Exo+2');
+
+.row {
+    height: 600px;
+    background-color: #2ecc71;
+    width: 60%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.pic_base {
+    height: 30%;
+    background-color: #34495e;
+    background: url('/assets/temp//iron.jpg');
+    background-size: cover;
+}
+
+#profile_pic {
+    border-radius: 100%;
+    border: 2px solid #34495e;
+    box-shadow: 0 2px 2px black;
+    box-sizing: border-box;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+
+
+/* -------------History---------------- */
+#history-content {
+    display: none;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+#history-content h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+#history-table th,
+#history-table td {
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #000000;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+#history-table th {
+    background-color: #f05a49;
+    color: white;
+}
+
+#history-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+
+/* ------------Action------------ */
+
+#action-content {
+    display: none;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+#action-content h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#action-table,
+#action-table1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#action-table th,
+#action-table1 th,
+#action-table1 td,
+#action-table td {
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #000000;
+    font-size: 20px;
+    font-family: cursive;
+    /* font-weight: bold; */
+}
+
+#action-table th,
+#action-table1 th {
+    background-color: #fd6027;
+    color: white;
+}
+
+#action-table tbody tr:nth-child(even),
+#action-table1 tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* ---------------------------------------------- */
+
+
+
+
+
+
+
+
+/* CSS cho vùng "light" nhấp nháy */
+.blinking-light {
+    animation: blink-background 1s infinite;
+}
+
+@keyframes blink-background {
+    0%, 100% {
+        background-color: #f0f0f0; /* Màu nền mặc định */
+    }
+    50% {
+        background-color: #ffff00; /* Màu nền khi nhấp nháy */
+    }
+}
+
+
+#pagination button,
+#pagination1 button {
+    margin: 0 5px; /* Khoảng cách ngang 5px */
+}
+#pagination,
+#pagination1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pagination button,
+#pagination1 button {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+#pagination1 button {
+    background-color: #8f661f;
+}
+#pagination button:hover {
+    background-color: #384bc5;
+}
+#pagination1 button:hover {
+    background-color: #7245a0;
+}
+
+#pagination button.active,
+#pagination1 button.active {
+    background-color: #45a049;
+}
+
+#search-bar input, button {
+    font-size: 20px;
+}
+#search-bar1 input, button {
+    font-size: 20px;
+}

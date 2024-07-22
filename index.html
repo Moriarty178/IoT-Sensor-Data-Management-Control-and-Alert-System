@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IoT Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <!-- Thêm thư viện Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="container314">
+        <!-- Phần A: Thẻ Dashboard, Profile, History -->
+        <div class="section-a">
+            <div class="tabs">
+                <div class="tab" onclick="showDashboard()">Dashboard</div>
+                <div class="tab" onclick="showHistory()">History</div>
+                <div class="tab" onclick="showAction()">Action</div>
+                <div class="tab" onclick="showProfile()">Profile</div>
+            </div>
+        </div>
+        <!-- Phần B: Hiển thị thông tin chi tiết -->
+        <div class="section-b">
+            <div id="dashboard-content" style="display: none">
+                <div class="data-section">
+                    <div class="data-item" id="temperature-item">Nhiệt độ: <span id="temperature">--</span></div>
+                    <div class="data-item" id="humidity-item">Độ ẩm: <span id="humidity">--</span></div>
+                    <div class="data-item" id="light-item">Ánh sáng: <span id="light">--</span></div>
+                    <div class="data-item" style="background-color: rgb(198, 195, 195);" id="dust-item">Độ bụi: <span
+                            id="dust">--</span></div>
+
+                </div>
+                <div class="control-section">
+                    <div class="chart-section">
+                        <canvas id="sensor-chart" width="750" height="660"></canvas>
+                        <canvas id="dust-sensor-chart" width="450" height="660"></canvas>
+                    </div>
+                    <!-- ----------------light & fan-------------------- -->
+                    <div class="light-control-and-fan-control">
+
+                        <div class="fan-control">
+                            <button id="fan-button" onclick="toggleFan()">ON</button>
+                            <img id="fan-icon" src="/assets/temp/fan.png" style="width: 50%; height: 40%;" alt="Quạt">
+                        </div>
+
+                        <div class="light" style="margin-top: 50px;">
+                            <div class="light-control">
+                                <button id="light-button" onclick="toggleLight()">ON</button>
+                                <img id="light-icon" src="/assets/temp/light-bulb-off.png"
+                                    style="width: 100%; height: 40%;" alt="Đèn">
+
+                            </div>
+                            <div class="light-control">
+                                <button id="light-button1" onclick="toggleLight1()">ON</button>
+                                <img id="light-icon1" src="/assets/temp/light-bulb-off.png"
+                                    style="width: 100%; height: 40%;" alt="Đèn">
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!------------------- Profile ----------------------->
+            <div id="profile-content" style="display: none; justify-content: center;">
+                <div class="row">
+                    <div class="pic_base">
+                        <img src="/assets/temp/robert.png" width=200 id="profile_pic" alt="">
+                    </div>
+                    <div class="profile-body">
+                        <div class="profile-header">
+                            <h2 style="font-family: cursive;">PROFILE</h2>
+                        </div>
+                        <p>Tên: Nguyễn Hải Phong</p>
+                        <p>Mã sinh viên: B20DCCN495</p>
+                        <p>Môn học: IoT và ứng dụng - Nhóm 8</p>
+                        <p>Giảng viên: Nguyễn Quốc Uy</p>
+                    </div>
+                </div>
+            </div>
+            <!------------------- History --------------------->
+            <div id="history-content" style="display: none; background: #7baafc;">
+                <!-- Hiển thị bảng thông tin lịch sử đo -->
+                <h2
+                    style="font-size: 36px; display: flex; justify-content: center; margin-bottom: 24px; font-family: cursive;">
+                    Lịch sử đo</h2>
+
+                <!-- Thanh tìm kiếm -->
+                <div id="search-bar" style="margin-bottom: 16px; font-size: 20px;">
+                    <input type="text" id="start-date" placeholder="Từ ngày">
+                    <input type="text" id="end-date" placeholder="Đến ngày">
+                    <button id="search-button">Lọc</button>
+                </div>
+                <!-- Tìm kiếm bản ghi -->
+                <input type="text" style="margin-bottom: 20px; font-size: 20px;" id="search-input"
+                    placeholder="Tìm kiếm...">
+                <table id="history-table" style="background: #ecb671;">
+                    <thead>
+                        <tr>
+                            <th id="id-header" data-column="0">ID</th>
+                            <th id="temperature-header" data-column="1">Nhiệt độ (°C)</th>
+                            <th id="humidity-header" data-column="2">Độ ẩm (%)</th>
+                            <th id="light-header" data-column="3">Ánh sáng (lux)</th>
+                            <th id="dust-header" data-column="4">Độ bụi (%)</th>
+                            <th id="time-header" data-column="5">Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tbody> trống để dữ liệu lịch sử sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+                <!-- Phân trang -->
+                <div id="pagination">
+                </div>
+            </div>
+            <!------------------- Action -------------------->
+            <div id="action-content" style="display: none; background: #28ab4f;">
+                <h2
+                    style="font-size: 36px; display: flex; justify-content: center; margin-bottom: 24px; font-family: cursive;">
+                    Action Table</h2>
+                <!-- Thanh tìm kiếm -->
+                <div id="search-bar1" style="margin-bottom: 16px; font-size: 20px;">
+                    <input type="text" id="start-date1" placeholder="Từ ngày">
+                    <input type="text" id="end-date1" placeholder="Đến ngày">
+                    <button id="search-button1">Tìm</button>
+                </div>
+                <!-- Tìm kiếm bản ghi -->
+                <input type="text" style="margin-bottom: 20px; font-size: 20px;" id="search-input1"
+                    placeholder="Tìm kiếm...">
+                <table id="action-table" style="background-color: #bccaff;">
+                    <thead>
+                        <tr>
+                            <th id="id-header1" data-column="0">ID</th>
+                            <th id="devicename-header" data-column="1">Device Name</th>
+                            <th id="status-header" data-column="2">Status</th>
+                            <th id="time-header1" data-column="3">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <!-- Phân trang -->
+                <div id="pagination1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+
+
+</html>
