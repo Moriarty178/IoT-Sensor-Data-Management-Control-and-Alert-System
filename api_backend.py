@@ -250,5 +250,5 @@ def handle_disconnect():
     print('Client disconnected')
     
 if __name__ == "__main__":
-    mqtt_client.loop_start()  # Bắt đầu vòng lặp MQTT để nhận dữ liệu từ Broker
+    mqtt_client.loop_start()  # Bắt đầu vòng lặp MQTT để nhận dữ liệu từ Broker______
     socketio.run(app, host="0.0.0.0", port=5000)
